@@ -5,7 +5,16 @@
   "description": "jquery.size-trigger is a simple cross-browser jQuery plugin for detecting ALL changes to the size of ANY positioned element",
   "keywords": [
     "jquery",
-    "resize"
+    "resize",
+	"resizer",
+	"onresize",
+	"resizing",
+	"responsive",
+	"width",
+	"height",
+    "div",
+    "sensor",
+	"element"	
   ],
   "authors": [
     "Robert Bar"
@@ -18,5 +27,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+	"jquery": ">=1.9.0"
+  }
 }

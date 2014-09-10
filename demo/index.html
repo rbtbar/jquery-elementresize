@@ -4,26 +4,25 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>size-trigger demo</title>   
+    <title>size-trigger demo</title>
     <style>
-      
         /* (0) monitored element must be a positioned element (position is other than static) */
         #monitoredElement {
-            position:absolute;
-            top:25%;
-            left:25%;
-            width:25%;
-            height:25%;
-            background-color:#808080;
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 25%;
+            height: 25%;
+            background-color: #808080;
         }
 
         #wrapper {
-            position:absolute;
-            top:auto;            
-            height:100%;
-            left:0;
+            position: absolute;
+            top: auto;
+            height: 100%;
+            left: 0;
             right: 0;
-        }       
+        }
 
         h2 {
             color: #808080;
@@ -31,16 +30,17 @@
     </style>
 </head>
 <body>
-   <h2>size-trigger demo: resize the window and/or use buttons to resize the grey box. The actual size will be displayed below.</h2>
-   <h3 id="monitor"></h3>
-   <input type="button" value="Enlarge" data-factor="105" />
-   <input type="button" value="Shrink" data-factor="95" />
-    
+    <h2>size-trigger demo: resize the window and/or use buttons to resize the grey box. The actual size will be displayed below.</h2>
+    <h3 id="monitor"></h3>
+    <input type="button" class="js-changer" value="Enlarge" data-factor="105" />
+    <input type="button" class="js-changer" value="Shrink" data-factor="95" />
+    <input type="button" id="destroyer" value="Disable plugin" />
+
     <div id="wrapper">
         <div id="monitoredElement">
             We monitor the size of this box.
         </div>
-    </div>   
+    </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- (1) include plugin script in a page -->
@@ -64,7 +64,7 @@
                 $monitor.html("Current size: " + width + "px x " + height + "px");
             }
 
-            $("input[type=button]").click(function () {
+            $("input.js-changer").click(function () {
                 var width = $monitoredElement.width()
                  , height = $monitoredElement.height()
                  , factor = $(this).data("factor")
@@ -73,9 +73,19 @@
 
                 $monitoredElement.width(((width * factor) / parentWidth) + "%").height(((height * factor) / parentHeight) + "%");
             });
+
+            $("#destroyer").click(function () {
+                
+                if ($monitoredElement.data("plugin_sizetrigger")) {
+                    // (4) destroy the plugin:
+                    $monitoredElement.data("plugin_sizetrigger").destroy();
+                    $(this).val("Enable plugin");
+                } else {
+                    $monitoredElement.sizetrigger({ onResize: monitoredElement_onResize });
+                    $(this).val("Disable plugin");
+                }               
+            });
         });
     </script>
 </body>
-
-
 </html>
