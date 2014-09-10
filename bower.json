@@ -1,7 +1,7 @@
 {
   "name": "jquery-element-onresize",
   "main": "jquery-element-onresize.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "jquery-element-onresize is a simple cross-browser jQuery plugin for detecting ALL changes to the size of ANY positioned element",
   "keywords": [
     "jquery",

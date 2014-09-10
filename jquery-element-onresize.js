@@ -1,5 +1,5 @@
 /**
- * jquery-element-onresize 0.1.0
+ * jquery-element-onresize 0.1.1
  * jquery-element-onresize is a simple jQuery plugin for detecting ALL changes in a size of ANY positioned element.
  *
  * Usage: $("#element").detectResizing({onResize: noArgFunction});
