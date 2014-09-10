@@ -1,0 +1,22 @@
+{
+  "name": "jquery.size-trigger",
+  "main": "jquery.size-trigger.js",
+  "version": "0.1.0",
+  "description": "jquery.size-trigger is a simple cross-browser jQuery plugin for detecting ALL changes to the size of ANY positioned element",
+  "keywords": [
+    "jquery",
+    "resize"
+  ],
+  "authors": [
+    "Robert Bar"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/rbtbar/jquery.size-trigger",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
