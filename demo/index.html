@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>size-trigger demo</title>   
+    <style>
+      
+        /* (0) monitored element must be a positioned element (position is other than static) */
+        #monitoredElement {
+            position:absolute;
+            top:25%;
+            left:25%;
+            width:25%;
+            height:25%;
+            background-color:#808080;
+        }
+
+        #wrapper {
+            position:absolute;
+            top:auto;            
+            height:100%;
+            left:0;
+            right: 0;
+        }       
+
+        h2 {
+            color: #808080;
+        }
+    </style>
+</head>
+<body>
+   <h2>size-trigger demo: resize the window and/or use buttons to resize the grey box. The actual size will be displayed below.</h2>
+   <h3 id="monitor"></h3>
+   <input type="button" value="Enlarge" data-factor="105" />
+   <input type="button" value="Shrink" data-factor="95" />
+    
+    <div id="wrapper">
+        <div id="monitoredElement">
+            We monitor the size of this box.
+        </div>
+    </div>   
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- (1) include plugin script in a page -->
+    <script src="/src/jquery.size-trigger.js"></script>
+
+    <script>
+
+        $(function () {
+
+            var $monitor = $("#monitor")
+              , $monitoredElement = $("#monitoredElement");
+
+            // (2) use the sizetrigger plugin to monitor changes of element's size:
+            $monitoredElement.sizetrigger({ onResize: monitoredElement_onResize });
+
+            // (3) write a function to react on changes:
+            function monitoredElement_onResize() {
+                var width = $monitoredElement.width()
+                  , height = $monitoredElement.height();
+
+                $monitor.html("Current size: " + width + "px x " + height + "px");
+            }
+
+            $("input[type=button]").click(function () {
+                var width = $monitoredElement.width()
+                 , height = $monitoredElement.height()
+                 , factor = $(this).data("factor")
+                 , parentWidth = $monitoredElement.offsetParent().width()
+                 , parentHeight = $monitoredElement.offsetParent().height();
+
+                $monitoredElement.width(((width * factor) / parentWidth) + "%").height(((height * factor) / parentHeight) + "%");
+            });
+        });
+    </script>
+</body>
+
+
+</html>
