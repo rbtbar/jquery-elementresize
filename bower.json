@@ -1,26 +1,26 @@
 {
-  "name": "jquery.size-trigger",
-  "main": "jquery.size-trigger.js",
+  "name": "jquery-element-onresize",
+  "main": "jquery-element-onresize.js",
   "version": "0.1.0",
-  "description": "jquery.size-trigger is a simple cross-browser jQuery plugin for detecting ALL changes to the size of ANY positioned element",
+  "description": "jquery-element-onresize is a simple cross-browser jQuery plugin for detecting ALL changes to the size of ANY positioned element",
   "keywords": [
     "jquery",
     "resize",
-	"resizer",
-	"onresize",
-	"resizing",
-	"responsive",
-	"width",
-	"height",
+    "resizer",
+    "onresize",
+    "resizing",
+    "responsive",
+    "width",
+    "height",
     "div",
     "sensor",
-	"element"	
+    "element"
   ],
   "authors": [
     "Robert Bar"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/rbtbar/jquery.size-trigger",
+  "homepage": "https://github.com/rbtbar/jquery-element-onresize",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -29,6 +29,6 @@
     "tests"
   ],
   "dependencies": {
-	"jquery": ">=1.9.0"
+    "jquery": ">=1.9.0"
   }
 }

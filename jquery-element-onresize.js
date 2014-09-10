@@ -1,8 +1,8 @@
 /**
- * jquery.size-trigger 0.1.0
- * jquery.size-trigger is a simple jQuery plugin for detecting ALL changes in a size of ANY positioned element.
+ * jquery-element-onresize 0.1.0
+ * jquery-element-onresize is a simple jQuery plugin for detecting ALL changes in a size of ANY positioned element.
  *
- * Usage: $("#element").sizetrigger({onResize: noArgFunction});
+ * Usage: $("#element").detectResizing({onResize: noArgFunction});
  *
  * Copyright 2014, RB Software Robert Bar (http://rbsoftware.pl)
  * Licensed under the MIT license.
@@ -11,7 +11,7 @@
 ; (function ($, window, document, undefined) {
     "use strict";
 
-    var pluginName  = "sizetrigger"
+    var pluginName  = "detectResizing"
       , defaults    = { onResize: undefined };
 
     function Plugin(element, options) {
@@ -26,8 +26,8 @@
     $.extend(Plugin.prototype, {
         _init: function () {
 
-            var iframes       = [$('<iframe class="js-sizetrigger" src="about:blank" style="position:absolute; top:-50000px; left:0px; width:100%;"></iframe>'), $('<iframe src="about:blank" style="position:absolute; top:0; left:-50000px; height:100%;"></iframe>')]
-              , frameContent  = "<!DOCTYPE html><html><head><title>jquery.sizetrigger</title></head><body><script>window.onresize = resize;function resize() { var plugin = parent.$(this.frameElement).data('plugin_sizetrigger'); plugin._fireResizeFunction(); }</script></body></html>";
+            var iframes       = [$('<iframe class="js-detectResizing" src="about:blank" style="position:absolute; top:-50000px; left:0px; width:100%;"></iframe>'), $('<iframe class="js-detectResizing" src="about:blank" style="position:absolute; top:0; left:-50000px; height:100%;"></iframe>')]
+              , frameContent  = "<!DOCTYPE html><html><head><title>jquery.detectResizing</title></head><body><script>window.onresize = resize;function resize() { var plugin = parent.$(this.frameElement).data('plugin_detectResizing'); plugin._fireResizeFunction(); }</script></body></html>";
 
             for (var i = 0; i < iframes.length; i++) {
                 var $iframe = iframes[i];
