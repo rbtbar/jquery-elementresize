@@ -8,63 +8,69 @@
  * Licensed under the MIT license.
  *
  */
-; (function ($, window, document, undefined) {
+; (function ( $, window, document, undefined ) {
     "use strict";
 
     var pluginName  = "detectResizing"
       , defaults    = { onResize: undefined };
 
-    function Plugin(element, options) {
+    function Plugin( element, options ) {
         this.element = element;
-        this.$element = $(element);
-        this.settings = $.extend(true, {}, defaults, options);
+        this.$element = $( element );
+        this.settings = $.extend( true, {}, defaults, options );
         this._defaults = defaults;
-        this._name = pluginName;
         this._init();
     }
 
-    $.extend(Plugin.prototype, {
+    $.extend( Plugin.prototype, {
         _init: function () {
 
-            var iframes       = [$('<iframe class="js-detectResizing" src="about:blank" style="position:absolute; top:-50000px; left:0px; width:100%;"></iframe>'), $('<iframe class="js-detectResizing" src="about:blank" style="position:absolute; top:0; left:-50000px; height:100%;"></iframe>')]
-              , frameContent  = "<!DOCTYPE html><html><head><title>jquery.detectResizing</title></head><body><script>window.onresize = resize;function resize() { var plugin = parent.$(this.frameElement).data('plugin_detectResizing'); plugin._fireResizeFunction(); }</script></body></html>";
+            var frameContent = "<!DOCTYPE html><html><head><title>jquery.detectResizing</title></head><body><script>window.onresize = resize;function resize() { var plugin = parent.$(this.frameElement).data('plugin_detectResizing'); plugin._fireResizeFunction(); }</script></body></html>"
+              , iframes = [ $('<iframe src="about:blank" style="position:absolute; top:-50000px; left:0px; width:100%;"></iframe>'), $('<iframe src="about:blank" style="position:absolute; top:0; left:-50000px; height:100%;"></iframe>') ]
+              , length  = iframes.length
+              , index   = 0
+              , $iframe;
 
-            for (var i = 0; i < iframes.length; i++) {
-                var $iframe = iframes[i];
-                this.$element.append($iframe);
-                $iframe.data("plugin_" + pluginName, this);
-                $iframe[0].contentWindow.emitcontent = frameContent;
-                $iframe[0].src = "javascript:window.emitcontent";
+            for ( ; index < length; index++ ) {
+                $iframe = iframes[ index ];            
+                this.$element.append( $iframe );
+                $iframe.data( "plugin_" + pluginName, this );
+                $iframe[ 0 ].contentWindow.emitcontent = frameContent;
+                $iframe[ 0 ].src = "javascript:window.emitcontent";
             }
 
             this._iframes = iframes;
             this._fireResizeFunction();
         },
 
-        _fireResizeFunction: function () {
-            var fn = this.settings["onResize"];
+        _fireResizeFunction: function() {
+            var fn = this.settings.onResize;
 
-            if ($.isFunction(fn)) {
+            if ( $.isFunction( fn ) ) {
                 fn();
             }
         },
 
         destroy: function() {
-            if (this.$element.data("plugin_" + pluginName)) {
-                this.$element.removeData("plugin_" + pluginName);
-                for (var i = 0; i < this._iframes.length; i++) {
-                    var $iframe = this._iframes[i];
-                    $iframe.removeData("plugin_" + pluginName);
+            var length = this._iframes.length
+              , index  = 0
+              , $iframe;
+              
+            if ( this.$element.data( "plugin_" + pluginName ) ) {
+                this.$element.removeData( "plugin_" + pluginName );
+                for ( ; index < length; index++ ) {
+                    $iframe = this._iframes[ index ];
+                    $iframe.removeData( "plugin_" + pluginName );
                     $iframe.remove();
                 }
             }
         }
 });
 
-$.fn[pluginName] = function (options) {
+$.fn[ pluginName ] = function ( options ) {
     this.each(function () {
-        if (!$.data(this, "plugin_" + pluginName)) {
-            $.data(this, "plugin_" + pluginName, new Plugin(this, options));
+        if ( !$.data( this, "plugin_" + pluginName ) ) {
+            $.data( this, "plugin_" + pluginName, new Plugin( this, options ) );
         }
     });
     return this;
