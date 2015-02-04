@@ -1,12 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>jquery-element-onresize demo</title>
+    <title>jquery-elementresize demo</title>
     <style>
-        /* (0) the monitored element must be a positioned element (position is other than static) */
+        /* (0) the monitored element must be a positioned element (position must other than 'static') */
         #monitoredElement {
             position: absolute;
             top: 25%;
@@ -30,11 +30,11 @@
     </style>
 </head>
 <body>
-    <h2>jquery-element-onresize demo: resize the window and/or use buttons to resize the grey box. The actual size will be displayed below.</h2>
+    <h2>jquery-elementresize demo: resize the window and/or use buttons to resize the grey box. The actual size will be displayed below.</h2>
     <h3 id="monitor"></h3>
     <input type="button" class="js-changer" value="Enlarge" data-factor="105" />
     <input type="button" class="js-changer" value="Shrink" data-factor="95" />
-    <input type="button" id="destroyer" value="Disable plugin" />
+    <input type="button" id="destroyer" value="Remove the event handler" />
 
     <div id="wrapper">
         <div id="monitoredElement">
@@ -42,48 +42,46 @@
         </div>
     </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <!-- (1) include plugin script in a page -->
-    <script src="../jquery-element-onresize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- (1) include special event script on a page -->
+    <script src="../dist/jquery.elementresize.js"></script>
 
     <script>
 
         $(function () {
 
-            var $monitor = $("#monitor")
-              , $monitoredElement = $("#monitoredElement");
+            var $monitor = $("#monitor"), 
+                $monitoredElement = $("#monitoredElement");
 
-            // (2) use the detectResizing plugin to monitor changes of element's size:
-            $monitoredElement.detectResizing({ onResize: monitoredElement_onResize });
+            // (2) use the special event to monitor changes of element's size:
+            $monitoredElement.on('elementResize', monitoredElement_onResize);
+            // or like this:
+            //$monitoredElement.elementResize(monitoredElement_onResize);
 
             // (3) write a function to react on changes:
             function monitoredElement_onResize() {
-                var width = $monitoredElement.width()
-                  , height = $monitoredElement.height();
+                var width = $monitoredElement.width(), 
+                    height = $monitoredElement.height();
 
                 $monitor.html("Current size: " + width + "px x " + height + "px");
             }
 
             $("input.js-changer").click(function () {
-                var width = $monitoredElement.width()
-                 , height = $monitoredElement.height()
-                 , factor = $(this).data("factor")
-                 , parentWidth = $monitoredElement.offsetParent().width()
-                 , parentHeight = $monitoredElement.offsetParent().height();
+                var width = $monitoredElement.width(), 
+                    height = $monitoredElement.height(), 
+                    factor = $(this).data("factor"), 
+                    parentWidth = $monitoredElement.offsetParent().width(), 
+                    parentHeight = $monitoredElement.offsetParent().height();
 
                 $monitoredElement.width(((width * factor) / parentWidth) + "%").height(((height * factor) / parentHeight) + "%");
             });
 
-            $("#destroyer").click(function () {
+            $("#destroyer").click(function () {  
+                // (4) disable the special event: 
+                $monitoredElement.off('elementResize');
+                // or like this:
+                //$monitoredElement.unelementResize(monitoredElement_onResize);
                 
-                if ($monitoredElement.data("plugin_detectResizing")) {
-                    // (4) destroy the plugin:
-                    $monitoredElement.data("plugin_detectResizing").destroy();
-                    $(this).val("Enable plugin");
-                } else {
-                    $monitoredElement.detectResizing({ onResize: monitoredElement_onResize });
-                    $(this).val("Disable plugin");
-                }               
             });
         });
     </script>

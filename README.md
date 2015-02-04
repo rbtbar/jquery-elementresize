@@ -1,8 +1,30 @@
-jquery-element-onresize
-===================
+# jQuery Element Resize Plugin
 
-jquery-element-onresize is a simple cross-browser jQuery plugin for detecting ALL changes to the size of ANY positioned element. 
+A [jQuery](http://jquery.com/) plugin that adds cross-browser element resize support.
 
-See the example on [JSFiddle]( http://jsfiddle.net/8L5b3e45/), ([full screen](http://jsfiddle.net/8L5b3e45/embedded/result/)).
+In order to use the plugin, simply bind the `elementResize` event to a positioned element.
 
-Good luck, have fun!
+It also provides two helper methods called `elementResize` and `unelementResize`
+that act just like other event helper methods in jQuery.
+
+```js
+// using on
+$('#my_elem').on('elementResize', function(event) {
+    var elem = $(this),
+        width = elem.width(), 
+        height = elem.height();
+    console.log(width, height);
+});
+
+// using the event helper
+$('#my_elem').elementResize(function(event) {
+   var elem = $(this),
+        width = elem.width(), 
+        height = elem.height();
+    console.log(width, height);
+});
+```
+
+## Support for UMD modules
+
+Support for AMD, Node/CommonJS, Browser globals is baked in.

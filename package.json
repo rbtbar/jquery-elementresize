@@ -1,0 +1,38 @@
+{
+  "name": "jquery-elementresize",
+  "version": "0.2.0",
+  "description": "Provides a custom jQuery event to detect resizing of a positioned (non-static) element.",
+  "main": "dist/jquery.elementresize.js",
+  "scripts": {},
+  "keywords": [
+    "jquery",
+    "resize",
+    "resizer",
+    "onresize",
+    "resizing",
+    "responsive",
+    "width",
+    "height",
+    "div",
+    "sensor",
+    "element"
+  ],
+  "author": {
+    "name": "Robert Bar",
+    "email": "robert@rbsoftware.pl",
+    "url": "http://rbsoftware.pl"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rbtbar/jquery-elementresize"
+  },
+  "devDependencies": {   
+    "grunt": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-uglify": "*",
+    "matchdep": "*"
+  }
+}

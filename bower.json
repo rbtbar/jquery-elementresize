@@ -1,8 +1,8 @@
 {
-  "name": "jquery-element-onresize",
-  "main": "jquery-element-onresize.js",
-  "version": "0.1.1",
-  "description": "jquery-element-onresize is a simple cross-browser jQuery plugin for detecting ALL changes to the size of ANY positioned element",
+  "name": "jquery-elementresize",
+  "main": "dist/jquery.elementresize.js",
+  "version": "0.2.0",
+  "description": "Provides a custom jQuery event to detect resizing of a positioned (non-static) element.",
   "keywords": [
     "jquery",
     "resize",
@@ -14,21 +14,22 @@
     "height",
     "div",
     "sensor",
-    "element"
+    "element",
+	"iframe"
   ],
   "authors": [
     "Robert Bar"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/rbtbar/jquery-element-onresize",
+  "homepage": "https://github.com/rbtbar/jquery-elementresize",
   "ignore": [
     "**/.*",
+	"demo",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": ">=1.9.0"
-  }
+	"src",	
+	"*.txt",
+	"*.md",
+	"*.json",
+	"Gruntfile.js"
+  ] 
 }
