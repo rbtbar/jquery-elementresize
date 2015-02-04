@@ -1,0 +1,28 @@
+{
+"name": "elementresize",
+"title": "jQuery Element Resize",
+"description": "A jQuery plugin that adds cross-browser element resize support.",
+"keywords": [
+"event",
+"resize",
+"element",
+"elementresize"
+],
+"version": "0.2.0",
+"author": {
+"name": "Robert Bar",
+"url": "http://rbsoftware.pl"
+},
+"licenses": [
+{
+"type": "MIT",
+"url": "https://raw.githubusercontent.com/rbtbar/jquery-elementresize/master/LICENSE"
+}
+],
+"bugs": "https://github.com/rbtbar/jquery-elementresize/issues",
+"homepage": "https://github.com/rbtbar/jquery-elementresize",
+"download": "https://github.com/rbtbar/jquery-elementresize/releases",
+"dependencies": {
+"jquery": ">=1.9.1"
+}
+}
