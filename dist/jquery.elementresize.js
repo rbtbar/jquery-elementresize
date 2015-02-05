@@ -1,5 +1,5 @@
 /*!
- * jQuery event extension: jquery-elementresize 0.2.0, 2015-02-04, 21:43.
+ * jQuery event extension: jquery-elementresize 0.2.1, 2015-02-05, 09:05.
  * Description: Provides a custom jQuery event to detect resizing of a positioned (non-static) element.
  * Author: Robert Bar, robert@rbsoftware.pl, http://rbsoftware.pl 
  * License: MIT
@@ -10,8 +10,8 @@
         // AMD. Register as an anonymous module.
         define(['jquery'], factory);
     } else if (typeof exports === 'object') {
-        // Node/CommonJS style for Browserify
-        module.exports = factory;
+        // Node/CommonJS style for Browserify/Webpack
+        module.exports = factory(require('jquery'));
     } else {
         // Browser globals
         factory(jQuery);

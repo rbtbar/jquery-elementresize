@@ -1,11 +1,12 @@
 {
   "name": "jquery-elementresize",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Provides a custom jQuery event to detect resizing of a positioned (non-static) element.",
   "main": "dist/jquery.elementresize.js",
   "scripts": {},
   "keywords": [
     "jquery",
+    "jquery-plugin",
     "resize",
     "resizer",
     "onresize",
