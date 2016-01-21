@@ -1,5 +1,5 @@
 /*!
- * jQuery event extension: jquery-elementresize 0.2.1, 2015-02-05, 09:05.
+ * jQuery event extension: jquery-elementresize 0.2.2, 2016-01-21, 09:02.
  * Description: Provides a custom jQuery event to detect resizing of a positioned (non-static) element.
  * Author: Robert Bar, robert@rbsoftware.pl, http://rbsoftware.pl 
  * License: MIT
@@ -20,6 +20,12 @@
     'use strict';
     var specialEventName = 'elementResize';
     
+    function ElementResizeDetector(elem) {
+        this.elem = elem;
+        this.$elem = $(elem);
+        this.activate();
+    }
+
     function addDetector(elem) {
         if (!$.data(elem, specialEventName)) {
             $.data(elem, specialEventName, new ElementResizeDetector(elem));
@@ -35,15 +41,9 @@
         }            
     }    
 
-    function ElementResizeDetector(elem) {
-        this.elem = elem;
-        this.$elem = $(elem);
-        this.activate();
-    }
-
     $.extend(ElementResizeDetector.prototype, {
         activate: function () {
-            var frameContent = '<!DOCTYPE html><html><head><title>jquery.elementResize</title></head><body><script>window.onresize = resize;function resize() { var detector = parent.$(this.frameElement).data("elementResize"); detector.trigger(); }</script></body></html>',
+            var frameContent = '<!DOCTYPE html><html><head><title>jquery.elementResize</title></head><body><script>window.onresize = resize;function resize() { var detector = parent.$ ? parent.$(this.frameElement).data("elementResize") : null; if (detector) { detector.trigger(); } }</script></body></html>',
                 iframes = [
                     $('<iframe src="about:blank" style="position:absolute; top:-50000px; left:0px; width:100%;"></iframe>'), 
                     $('<iframe src="about:blank" style="position:absolute; top:0; left:-50000px; height:100%;"></iframe>') 
